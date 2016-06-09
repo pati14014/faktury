@@ -33,14 +33,9 @@ namespace fakturyA
         {
             Code = row[0];
             Name = row[4];
-            //PriceNetto =Convert.ToDecimal(row[1]);
-            /* */
-            var ci = CultureInfo.InvariantCulture.Clone() as CultureInfo;
-            ci.NumberFormat.NumberDecimalSeparator = ".";
-            PriceNetto = Decimal.Parse(row[1], ci);
-            /* */
+            PriceNetto =Convert.ToDecimal(row[1]);
             VATvalue = Convert.ToDecimal(row[3]);
-            PriceBrutto = PriceNetto + Convert.ToDecimal(VATvalue)/100;
+            PriceBrutto = PriceNetto + Convert.ToDecimal(VATvalue) / 100;
             UnitMeasure = row[2];
 
         }
@@ -57,6 +52,6 @@ namespace fakturyA
         {
             return String.Format("Delete from artykul where kod='{0}'", Code);
         }
-
+        
     }
 }
