@@ -70,15 +70,69 @@ namespace fakturyA
             /// ======== TO DO -> potrzebny obiekt artykułu! ===============
             /// ============================================================
             /// ============================================================
+           
             FormArticles addingArticleToInvoice_Window = new FormArticles();
-            string[] addedArticleData = addingArticleToInvoice_Window.ShowWindowToAddNewArticle();
+            addingArticleToInvoice_Window.ShowWindowToAddNewArticle();
 
+            //Article addedArticleData = addingArticleToInvoice_Window.ShowWindowToAddNewArticle();
+
+           // if (addedArticleData == null) // no data receive
+           //     return;
+
+           // string productCode = addedArticleData.Code;
+           // string productAmount = Convert.ToString(addedArticleData.Amount);
+           // string productDiscount = Convert.ToString(addedArticleData.Discount);
+           // string productName = addedArticleData.Name;
+           //string  productDisc=Convert.ToString( addedArticleData.Discount);
+           //string productAmo =Convert.ToString( addedArticleData.Amount);
+           //string  productPriceNetto =Convert.ToString( addedArticleData.PriceNetto);
+           //string productVAT = Convert.ToString(addedArticleData.VATvalue);
+
+
+           // if (!productCodesOnInvoice.Contains(productCode))
+           // {
+           //     MainProgram.Connection = DatabaseMySQL.Connect(MainProgram.DatabaseName);
+           //     try
+           //     {
+           //         DatabaseMySQL.OpenConnection(MainProgram.Connection);
+           //         //string[] productData = DatabaseMySQL.GetArticleData(productCode);
+                    
+           //         dataGridView1.Rows.Add(productCode, productName, productPriceNetto, productVAT, "*", productDisc, productAmo, "szt.", "=", "=");
+           //         productCodesOnInvoice.Add(productCode);
+           //     }
+           //     catch (Exception exc)
+           //     {
+           //         MessageBox.Show(exc.Message);
+           //     }
+           //     finally
+           //     {
+           //         DatabaseMySQL.CloseConnection(MainProgram.Connection);
+           //     }
+           // }
+           // else
+           // {
+           //     MessageBox.Show("Ten produkt występuje już na fakturze i nie można go dodać ponownie.\nWybierz element na liście, a następnie dokonaj stosownych poprawek.");
+           // }
+
+        }
+
+
+        public void addArticleToInvoice(Article article)
+        {
+            MessageBox.Show("aha, no chociaż wywołało addArticle");
+            Article addedArticleData = MainProgram.AddedArticle;
             if (addedArticleData == null) // no data receive
                 return;
 
-            string productCode = addedArticleData[0];
-            string productAmount = addedArticleData[1];
-            string productDiscount = addedArticleData[2];
+            string productCode = addedArticleData.Code;
+            string productAmount = Convert.ToString(addedArticleData.Amount);
+            string productDiscount = Convert.ToString(addedArticleData.Discount);
+            string productName = addedArticleData.Name;
+            string productDisc = Convert.ToString(addedArticleData.Discount);
+            string productAmo = Convert.ToString(addedArticleData.Amount);
+            string productPriceNetto = Convert.ToString(addedArticleData.PriceNetto);
+            string productVAT = Convert.ToString(addedArticleData.VATvalue);
+
 
             if (!productCodesOnInvoice.Contains(productCode))
             {
@@ -86,12 +140,9 @@ namespace fakturyA
                 try
                 {
                     DatabaseMySQL.OpenConnection(MainProgram.Connection);
-                    string[] productData = DatabaseMySQL.GetArticleData(productCode);
-                    string productName = productData[0];
-                    string productPriceNetto = productData[1];
-                    string productVAT = productData[2];
+                    //string[] productData = DatabaseMySQL.GetArticleData(productCode);
 
-                    dataGridView1.Rows.Add(productCode, productName, productPriceNetto, productVAT, "*", productDiscount, productAmount, "szt.", "=", "=");
+                    dataGridView1.Rows.Add(productCode, productName, productPriceNetto, productVAT, "*", productDisc, productAmo, "szt.", "=", "=");
                     productCodesOnInvoice.Add(productCode);
                 }
                 catch (Exception exc)
@@ -107,10 +158,7 @@ namespace fakturyA
             {
                 MessageBox.Show("Ten produkt występuje już na fakturze i nie można go dodać ponownie.\nWybierz element na liście, a następnie dokonaj stosownych poprawek.");
             }
-
         }
-
-
 
         private void buttonSaveInvoice_Click(object sender, EventArgs e)
         {
@@ -254,6 +302,16 @@ namespace fakturyA
             }
 
             return true;
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

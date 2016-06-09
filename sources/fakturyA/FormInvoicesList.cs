@@ -40,7 +40,7 @@ namespace fakturyA
                     row.Cells["index"].Value = i;
                     row.Cells["NrFaktury"].Value = invoice.Number;
                     row.Cells["sprzedawca"].Value = invoice.EmployeeName;
-                    row.Cells["KlientNIP"].Value = invoice.CustomerNIP;
+                   // row.Cells["KlientNIP"].Value = invoice.CustomerNIP;
                     row.Cells["KlientName"].Value = invoice.CusotmerName;
                     row.Cells["WartoscFaktury"].Value = invoice.InvoiceValue;
                     row.Cells["DoZaplaty"].Value = invoice.AmountPaid;
@@ -56,8 +56,8 @@ namespace fakturyA
             dataGridView1.Rows.Clear();
             var ResultsInvoices = from Invoice invoice in MainProgram.InvoiceObjectsList
                                   where (invoice.Number.Contains(textBoxFindNumber.Text)
-                                  && invoice.CusotmerName.Contains(textBoxFindCustomerName.Text)
-                                  && invoice.CustomerNIP.ToString().Contains(textBoxFindNIP.Text))
+                                  && invoice.CusotmerName.Contains(textBoxFindCustomerName.Text))
+                                  //&& invoice.CustomerNIP.ToString().Contains(textBoxFindNIP.Text))
                                   select invoice;
 
             foreach (Invoice invoice in ResultsInvoices)
@@ -68,7 +68,7 @@ namespace fakturyA
                 row.Cells["index"].Value = i;
                 row.Cells["NrFaktury"].Value = invoice.Number;
                 row.Cells["sprzedawca"].Value = invoice.EmployeeName;
-                row.Cells["KlientNIP"].Value = invoice.CustomerNIP;
+               // row.Cells["KlientNIP"].Value = invoice.CustomerNIP;
                 row.Cells["KlientName"].Value = invoice.CusotmerName;
                 row.Cells["WartoscFaktury"].Value = invoice.InvoiceValue;
                 row.Cells["DoZaplaty"].Value = invoice.AmountPaid;
@@ -125,6 +125,11 @@ namespace fakturyA
 
 
         private void WriteInvoice(Invoice invoice)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

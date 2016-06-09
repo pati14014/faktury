@@ -18,6 +18,7 @@ namespace fakturyA
         public static string LoggedUser { get; private set; }
         public static int LoggeUserID { get; private set; }
         public static bool PermissionsLevel { get; private set; }
+        public static Article AddedArticle { get; set; }
 
         /* MySQL */
         public static MySqlConnection Connection { get; set; }
@@ -26,6 +27,7 @@ namespace fakturyA
         /* okienka aplikacji */
         public static FormInvoicesList InvoiceWindow { get; set; } 
         public static FormArticles ArticlesWindow { get; set; }
+        public static FormInvoiceEditor InvoiceEditor { get; set; }
 
         /* Listy */
         public static List<Invoice> InvoiceObjectsList { get; set; }

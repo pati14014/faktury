@@ -47,7 +47,7 @@ namespace fakturyA
             connect.Close();
         }
 
-
+        
         public static void LoadInvoicesList()
         {
             MainProgram.Connection = DatabaseMySQL.Connect(MainProgram.DatabaseName);
@@ -247,7 +247,38 @@ namespace fakturyA
         //    return data;
         //}
 
+        public static void LoadArticleList()
+        {
+            MainProgram.Connection = DatabaseMySQL.Connect(MainProgram.DatabaseName);
+            try
+            {
+                DatabaseMySQL.OpenConnection(MainProgram.Connection);
+                string qText = string.Format("select* from artykul;");
+                MySqlCommand q = new MySqlCommand(qText, MainProgram.Connection);
+                MySqlDataReader reader = q.ExecuteReader();
+                while (reader.Read())
+                {
+                    string[] cols = new string[reader.FieldCount]; //fieldCount ile mamy kolumn z bazy
 
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        cols[i] = reader[i].ToString();
+                    }
+
+                    FormArticles.articlesList.Add(new Article(cols));
+                }
+
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                DatabaseMySQL.CloseConnection(MainProgram.Connection);
+            }
+        }
         public static int ExecuteQuery(string query)
         {
             // POZWALA ZREALIZOWAĆ DOWOLNE ZAPYTANIE WYSŁANE JAKO TEKST. 
@@ -273,4 +304,5 @@ namespace fakturyA
             return n; // zwraca liczbę zmodyfikowanych rekordów.
         }
     }
+
 }

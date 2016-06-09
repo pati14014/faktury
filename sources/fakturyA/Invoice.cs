@@ -21,7 +21,6 @@ namespace fakturyA
 
         public int Id_record { get; private set; }
         public string CusotmerName { get; private set; }
-        public int CustomerNIP { get; private set; }
         public int EmployeeID { get; private set; }
         public string EmployeeName { get; private set; }
 
@@ -120,10 +119,10 @@ namespace fakturyA
                 EmployeeID = Convert.ToInt16(dataRow[2]);
                 EmployeeName = dataRow[4];
                 CusotmerName = dataRow[3];
-                if (dataRow[5] != "-")
-                    CustomerNIP = Convert.ToInt32(dataRow[5]);
-                else 
-                    CustomerNIP = 0;
+               // if (dataRow[5] != "-")
+                 //   CustomerNIP = Convert.ToInt32(dataRow[5]);
+               // else 
+                  //  CustomerNIP = 0;
                 InvoiceValue = Convert.ToDecimal(dataRow[6]);
                 //AmountPaid = Convert.ToDecimal(dataRow[7]);
                 InvoiceDate = Convert.ToDateTime(dataRow[8]);

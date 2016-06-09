@@ -20,6 +20,7 @@ namespace fakturyA
             MainProgram.LoggIn(1); // zalogowano jako user o ID 1
 
             MainProgram.InvoiceObjectsList = new List<Invoice>();
+            FormArticles.articlesList = new List<Article>();
         }
 
         private void buttonTowaryUslugi_Click(object sender, EventArgs e)
@@ -34,6 +35,7 @@ namespace fakturyA
             {
                 MainProgram.ArticlesWindow.Show();
             }
+            MainProgram.ArticlesWindow.EditMode = true;
         }
 
         private void buttonInvoicesList_Click(object sender, EventArgs e)
@@ -53,8 +55,8 @@ namespace fakturyA
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FormInvoiceEditor window = new FormInvoiceEditor();
-            window.ShowDialog();
+            MainProgram.InvoiceEditor = new FormInvoiceEditor();
+            MainProgram.InvoiceEditor.ShowDialog();
         }
     }
 }
